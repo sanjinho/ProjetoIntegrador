@@ -6,9 +6,12 @@ Flask-Login==0.6.3
 Flask-Mail==0.10.0
 Flask-SQLAlchemy==3.1.1
 greenlet==3.1.1
+gunicorn==23.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
+packaging==24.2
+psycopg2-binary==2.9.10
 SQLAlchemy==2.0.39
 typing_extensions==4.12.2
 Werkzeug==3.1.3

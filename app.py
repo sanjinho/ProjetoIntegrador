@@ -4,10 +4,15 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer as Serializer, BadSignature
-
+import os
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+
+if os.environ.get('FLASK_ENV') == 'production':
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')  # Usando o PostgreSQL
+else:
+    app.config['SECRET_KEY'] = 'secret_key'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Usando SQLite localmente
+
 
 # Configuração de e-mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Use seu servidor de e-mail
@@ -204,6 +209,3 @@ def reset_password(token):
         return redirect(url_for('login'))
 
     return render_template('reset_password.html', token=token)
-
-if __name__ == '__main__':
-    app.run(debug=True)
