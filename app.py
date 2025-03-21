@@ -9,9 +9,12 @@ app = Flask(__name__)
 
 if os.environ.get('FLASK_ENV') == 'production':
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')  # Usando o PostgreSQL
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  # Carregar o SECRET_KEY da variável de ambiente
 else:
-    app.config['SECRET_KEY'] = 'secret_key'
+    app.config['SECRET_KEY'] = 'secret_key'  # Chave secreta de desenvolvimento (não usar em produção)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Usando SQLite localmente
+
+
 
 
 # Configuração de e-mail
