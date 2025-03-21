@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Controle seus gastos!</title>
+    <style>
+        *{box-sizing:border-box;font-family:Georgia, 'Times New Roman', Times, serif;}
+.header{background-color:#76323f;color:azure;padding:40px;text-align:center;vertical-align: middle;height:30vh;}
+.lateralcadastro::after{
+    content="";
+    clear:both;
+    display:table;
+}
+.cadastro{background-color: #565656;width:33.33%;padding:50px 0;height:50vh;text-align: center;float:left;}
+
+.cadastro a{color:azure;text-decoration: none;background-color:#76323f;;padding:20px 40px;margin-top:30px;display:inline-block;
+font-size:2vw;
+}
+.cadastro a:hover{padding:30px 60px;}
+.lateral{background-color: #565656;width:33.33%;height:50vh;text-align: center;float:left;}
+.footer{background-color:#C09F80;color:azure;text-align: center;height:20vh;clear:both;}
+    </style>
+
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="font-size:4vw"> <span title="Assistente Financeiro Pessoal">Controle seus gastos com AFP</span></h1>
+        </div>
+        <div class="cadastro" style="background-image: url('{{ url_for('static', filename='fn.png') }}');background-repeat:no-repeat; background-size:cover;" >
+         <img src="">
+        </div>
+        <div class="cadastro">
+             <a id="link1" href="{{url_for('login')}}">Entrar</a><br>
+             <a id="link2" href="{{url_for('cadastro')}}">Cadastrar-se</a>
+        </div>
+        <div class="cadastro" style="background-image: url('{{ url_for('static', filename='fn1.png') }}');background-repeat:no-repeat; background-size:cover;">
+       </div>
+       <div class="footer">
+        <p style="padding-top:20px;font-family: cursive;">Projeto Integrador 1<br>UNIVESP 2025</p>
+       </div>      
+    </body>
+        
+       
+
+</html>

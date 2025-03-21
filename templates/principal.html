@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+<style>
+    body{border:15px solid #76323f}
+    .add{text-align:center;padding:2vw;font-size:1.5vw;background-color: #76323f;color:azure;}
+    .add label{display:inline-block;}
+    .t{display:inline-block;padding-left:20px;}
+    h1{font-size:3vw;}
+    .resumo{text-align: center; font-size:1.5vw;}
+    .tabelas{display:flex;}
+    .tabelas iframe{border-top:15px solid #76323f;}
+    #ifdespesas{border-left:15px solid #76323f;}
+    .logout{text-align: right;padding:2vw;background-color: #76323f;}
+    .logout a{color: azure; font-size: 3vw; text-decoration: none;padding-right: 2vw;}
+</style>
+
+</style>
+</head>
+<body>
+    <div class="add">
+        <h1>Registrar transação:</h1>
+    <form action="" method="post">
+    
+        <input type='radio' id="tipo" name="tipo" value="renda" checked>
+        <label for="tipo" class="p">Renda:</label>
+        <input type='radio' id="tipo" name="tipo" value="despesa">
+            <label for="tipo" class="p">Despesa</label>
+    
+        
+        <label for="descricao" class="t">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" required>
+        <label for="valor" class="t">Valor:</label>
+        <input type="number" id="valor" name="valor" step="0.001" required>
+        <button type="submit">Adicionar</button>
+    </form>
+    </div>
+    <div class="resumo">
+    <h2>Renda Total: {{ total_rendas|formatar_valor }}</h2>
+<h2>Despesa total: {{ total_despesas|formatar_valor }}</h2>
+<h2>Diferença: {{total|formatar_valor}}</h2>
+
+    </div>
+
+    <div class="tabelas">
+        <iframe src="{{ url_for('rendas')}}" id="ifrendas"  frameborder="0" style="width: 50%; height: 500px;"></iframe>
+        <iframe src="{{ url_for('despesas') }}" id="ifdespesas" frameborder="0" style="width: 50%; height: 500px;"></iframe>
+    </div>
+    <div class="logout">
+    <a href="{{url_for('logout')}}">>>> sair</a>
+    <p style="padding-top:20px;font-family: cursive;text-align: center;color:azure;">Projeto Integrador 1<br>UNIVESP 2025</p>
+    </div>
+</body>
+</html>

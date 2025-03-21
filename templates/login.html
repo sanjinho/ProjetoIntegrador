@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar</title>
+    {% if mensagem %}
+  <script>
+    alert('{{ mensagem }}');
+  </script>
+{% endif %}
+
+      
+      
+    <style>
+        body{background-color:#76323f;color: azure;font-family: Georgia, 'Times New Roman', Times, serif;text-align: center;}
+        div{margin-top:20vh;}
+        label{font-size: 2vw;}
+        input{width:50%;padding: 3vh;font-size:2vw;}
+        input:hover{border:1.1vh solid azure;}
+        button{padding: 20px 50px;color:azure;background-color:#565656;font-size: 2vw;}
+        button:hover{border:3px solid azure;}
+        p{font-size:2vw;}
+        a{color:yellow;text-decoration: none;}
+    </style>
+</head>
+<body>
+    <div>
+    <h1 style="font-size:4vw">Entrar</h1>
+    <form action="{{ url_for('login') }}" method="post">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="senha">&nbsp;&nbsp;Senha:</label>
+        <input type="password" id="senha" name="senha" required><br><br>
+        <button type="submit">Entrar</button>
+    </form>
+    </div>
+    <br>
+    <p>Não é cadastrado? <a href="{{ url_for('cadastro') }}">Cadastre-se!</a></p>
+    <p>Esqueceu sua senha?<a href="{{ url_for('recover') }}">Recuperar senha</a></p>
+</body>
+</html>

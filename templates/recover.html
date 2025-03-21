@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de Senha</title>
+</head>
+<body>
+    <h1>Recuperar Senha</h1>
+    <form action="{{ url_for('recover') }}" method="POST">
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" required>
+        <button type="submit">Enviar Link de Recuperação</button>
+    </form>
+    {% if mensagem %}
+        <p>{{ mensagem }}</p>
+    {% endif %}
+</body>
+</html>
