@@ -4,54 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Principal</title>
-<style>
-    body{border:15px solid #76323f}
-    .add{text-align:center;padding:2vw;font-size:1.5vw;background-color: #76323f;color:azure;}
-    .add label{display:inline-block;}
-    .t{display:inline-block;padding-left:20px;}
-    h1{font-size:3vw;}
-    .resumo{text-align: center; font-size:1.5vw;}
-    .tabelas{display:flex;}
-    .tabelas iframe{border-top:15px solid #76323f;}
-    #ifdespesas{border-left:15px solid #76323f;}
-    .logout{text-align: right;padding:2vw;background-color: #76323f;}
-    .logout a{color: azure; font-size: 3vw; text-decoration: none;padding-right: 2vw;}
-</style>
+    <style>
+        body {
+            border: 15px solid #76323f;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+        }
 
-</style>
+        /* Estilo do título principal */
+        h1 {
+            font-size: 3vw;
+            margin-bottom: 2vw;
+        }
+
+        .add {
+            text-align: center;
+            padding: 2vw;
+            font-size: 1.5vw;
+            background-color: #76323f;
+            color: azure;
+        }
+
+        .add label {
+            display: inline-block;
+        }
+
+        .t {
+            display: inline-block;
+            padding-left: 2vw;
+        }
+
+        .resumo {
+            text-align: center;
+            font-size: 1.5vw;
+            padding: 2vw;
+        }
+
+        .tabelas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 2vw;
+        }
+
+        .tabelas iframe {
+            border-top: 15px solid #76323f;
+            margin-bottom: 2vw;
+            width: 48%;
+            height: 400px;
+        }
+
+        #ifdespesas {
+            border-left: 15px solid #76323f;
+        }
+
+        .logout {
+            text-align: right;
+            padding: 2vw;
+            background-color: #76323f;
+        }
+
+        .logout a {
+            color: azure;
+            font-size: 2vw;
+            text-decoration: none;
+            padding-right: 2vw;
+        }
+
+        /* Media Queries para responsividade em telas menores */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 5vw;
+            }
+
+            .add {
+                font-size: 4vw;
+                padding: 5%;
+            }
+
+            .add label {
+                font-size: 4vw;
+            }
+
+            .t {
+                font-size: 4vw;
+                padding-left: 4vw;
+            }
+
+            .resumo {
+                font-size: 4vw;
+            }
+
+            .tabelas iframe {
+                width: 100%;
+                height: 300px;
+            }
+
+            .logout a {
+                font-size: 4vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 7vw;
+            }
+
+            .add {
+                font-size: 5vw;
+                padding: 8%;
+            }
+
+            .add label {
+                font-size: 5vw;
+            }
+
+            .t {
+                font-size: 5vw;
+                padding-left: 5vw;
+            }
+
+            .resumo {
+                font-size: 5vw;
+            }
+
+            .tabelas iframe {
+                width: 100%;
+                height: 250px;
+            }
+
+            .logout a {
+                font-size: 5vw;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="add">
         <h1>Registrar transação:</h1>
-    <form action="" method="post">
-    
-        <input type='radio' id="tipo" name="tipo" value="renda" checked>
-        <label for="tipo" class="p">Renda:</label>
-        <input type='radio' id="tipo" name="tipo" value="despesa">
+        <form action="" method="post">
+            <input type="radio" id="tipo" name="tipo" value="renda" checked>
+            <label for="tipo" class="p">Renda:</label>
+            <input type="radio" id="tipo" name="tipo" value="despesa">
             <label for="tipo" class="p">Despesa</label>
-    
-        
-        <label for="descricao" class="t">Descrição:</label>
-        <input type="text" id="descricao" name="descricao" required>
-        <label for="valor" class="t">Valor:</label>
-        <input type="number" id="valor" name="valor" step="0.001" required>
-        <button type="submit">Adicionar</button>
-    </form>
-    </div>
-    <div class="resumo">
-    <h2>Renda Total: {{ total_rendas|formatar_valor }}</h2>
-<h2>Despesa total: {{ total_despesas|formatar_valor }}</h2>
-<h2>Diferença: {{total|formatar_valor}}</h2>
 
+            <label for="descricao" class="t">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required>
+            
+            <label for="valor" class="t">Valor:</label>
+            <input type="number" id="valor" name="valor" step="0.001" required>
+            
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+
+    <div class="resumo">
+        <h2>Renda Total: {{ total_rendas|formatar_valor }}</h2>
+        <h2>Despesa total: {{ total_despesas|formatar_valor }}</h2>
+        <h2>Diferença: {{ total|formatar_valor }}</h2>
     </div>
 
     <div class="tabelas">
-        <iframe src="{{ url_for('rendas')}}" id="ifrendas"  frameborder="0" style="width: 50%; height: 500px;"></iframe>
-        <iframe src="{{ url_for('despesas') }}" id="ifdespesas" frameborder="0" style="width: 50%; height: 500px;"></iframe>
+        <iframe src="{{ url_for('rendas') }}" id="ifrendas" frameborder="0"></iframe>
+        <iframe src="{{ url_for('despesas') }}" id="ifdespesas" frameborder="0"></iframe>
     </div>
+
     <div class="logout">
-    <a href="{{url_for('logout')}}">>>> sair</a>
-    <p style="padding-top:20px;font-family: cursive;text-align: center;color:azure;">Projeto Integrador 1<br>UNIVESP 2025</p>
+        <a href="{{ url_for('logout') }}">>>> sair</a>
+        <p style="padding-top:20px;font-family: cursive;text-align: center;color:azure;">
+            Projeto Integrador 1<br>UNIVESP 2025
+        </p>
     </div>
 </body>
 </html>
